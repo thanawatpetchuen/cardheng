@@ -1,0 +1,23 @@
+version: "3"
+services:
+  webapp:
+    build: .
+    volumes: 
+      - ./:/var/www/app
+    ports: 
+      - 8080:80
+    networks:
+      - backend
+  sql:
+    image: mariadb
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_PASSWORD: example
+      MYSQL_DATABASE: cardheng
+    ports: 
+      - 3306:3306
+    networks:
+      - backend
+networks: 
+  backend:
